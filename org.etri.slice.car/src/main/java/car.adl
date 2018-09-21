@@ -1,0 +1,319 @@
+
+import org.etri.slice.commons.car.^context.BodyPartLength
+import org.etri.slice.commons.car.^context.HumanInfo
+import org.etri.slice.commons.car.^context.NoiseLevel
+import org.etri.slice.commons.car.^context.Pressure
+import org.etri.slice.commons.car.^context.RadioState
+import org.etri.slice.commons.car.^context.Rainfall
+import org.etri.slice.commons.car.^context.SeatPosture
+import org.etri.slice.commons.car.^context.SleepDetect
+import org.etri.slice.commons.car.^context.WindowState
+import org.etri.slice.commons.car.^context.WiperState
+import org.etri.slice.commons.car.^event.FaceDetected
+import org.etri.slice.commons.car.^event.FullBodyDetected
+import org.etri.slice.commons.car.^event.NoiseDetected
+import org.etri.slice.commons.car.^event.RadioStateChanged
+import org.etri.slice.commons.car.^event.RainDetected
+import org.etri.slice.commons.car.^event.SeatPostureChanged
+import org.etri.slice.commons.car.^event.SleepDetected
+import org.etri.slice.commons.car.^event.UserSeated
+import org.etri.slice.commons.car.^event.WindowStateChanged
+import org.etri.slice.commons.car.^event.WiperStateChanged
+import org.etri.slice.commons.car.service.RadioControl
+import org.etri.slice.commons.car.service.SeatControl
+import org.etri.slice.commons.car.service.WindowControl
+import org.etri.slice.commons.car.service.WiperControl
+
+domain car {
+	context BodyPartLength {
+		double torso
+		double height
+	}
+
+	context Pressure {
+		double value
+	}
+
+	context SleepDetect {
+		double elapsedTime
+	}
+
+	context HumanInfo {
+		int gender	
+		int age_low
+		int age_high
+		double happiness	
+	}
+
+	@topic("full_body_detected")
+	event FullBodyDetected {
+		BodyPartLength bodyLength;
+	}
+
+	@topic("user_seated")
+	event UserSeated {
+		BodyPartLength bodyLength;
+	}
+
+	@topic("sleep_detected")
+	event SleepDetected {
+		SleepDetect sleep;
+	}
+
+	@topic("face_detected")
+	event FaceDetected {
+		HumanInfo human;
+	}
+
+	@agency(ip="129.254.88.119", port=1883)
+	agent HumanSensor {
+		hasRuleSet humansensor_rules{
+			group-id "org.etri.slice"
+			artifact-id "humansensor"
+		}
+		
+		hasBehaviors {
+			behavior "FullBody Detection Notificiation"
+				on BodyPartLength
+        		do publish FullBodyDetected
+         	end
+
+			behavior "UserSeated Notification"
+				on BodyPartLength, Pressure
+            	do publish UserSeated
+         	end
+
+			behavior "SleepDetected Notificiation"
+				on SleepDetect
+            	do publish SleepDetected
+         	end
+
+			behavior "FaceDetection Notificiation"
+				on HumanInfo
+	            do publish FaceDetected
+    	     end
+		}
+	}
+
+	context SeatPosture {
+		double height
+		double position
+		double tilt
+	}
+
+	control SeatControl {
+		double height;
+		double position;
+		double tilt;
+		SeatPosture posture;
+	}
+
+	@topic("seat_posture_changed")
+	event SeatPostureChanged {
+		SeatPosture seat;
+	}
+
+	@agency(ip="129.254.88.119", port=1883)
+	agent CarSeatController {
+		hasRuleSet carseatcontroller_rules{
+			group-id "org.etri.slice"
+			artifact-id "carseatcontroller"
+		}
+		
+		hasBehaviors {
+			behavior "SeatPosture Change Notificiation"
+				on SeatPosture
+        	    do publish SeatPostureChanged
+      		end
+			behavior "Subscribe UserSeated Event"
+				on UserSeated
+        	    do no-op
+      		end      		
+		}
+		
+		hasCommandsOf SeatControl {
+			command carseat_height {
+         		context BodyPartLength.height
+         		action SeatControl.setHeight
+      		}
+      
+      		command carseat_position {
+         		context BodyPartLength.height
+         		action SeatControl.setPosition
+      		}
+      		command carseat_tilt {
+         		context BodyPartLength.height
+         		action SeatControl.setTilt
+      		}
+   		}
+	}
+
+	context Rainfall {
+		double value
+	}
+
+	context NoiseLevel {
+		double value
+	}
+
+	@topic("rain_detected")
+	event RainDetected {
+		Rainfall rain;
+	}
+
+	@topic("noise_detected")
+	event NoiseDetected {
+		NoiseLevel noise;
+	}
+
+	@agency(ip="129.254.88.119", port=1883)
+	agent EnvSensor {
+		hasRuleSet envsensor_rules{
+			group-id "org.etri.slice"
+			artifact-id "envsensor"
+		}
+		
+		hasBehaviors {
+			behavior "Rain Detection Notificiation"
+				on Rainfall
+        	    do publish RainDetected
+         	end
+
+			behavior "NoiseLevel Detection Notification"
+				on NoiseLevel
+	            do publish NoiseDetected
+    	     end
+		}
+	}
+
+	context RadioState {
+		boolean power;
+		int volume;
+		int channel;
+	}
+
+	control RadioControl {
+		boolean power;
+		int volume;
+		int channel;
+	}
+
+	@topic("radio_state_changed")
+	event RadioStateChanged {
+		RadioState radio;
+	}
+
+	@agency(ip="129.254.88.119", port=1883)
+	agent RadioController {
+		hasRuleSet radiocontroller_rules{
+			group-id "org.etri.slice"
+			artifact-id "radiocontroller"
+		}
+		
+		hasBehaviors {
+			behavior "Radio Control for sleep"
+				on SleepDetected
+        	    do call RadioControl.setVolume
+			end
+
+			behavior "Radio Setup for Human"
+				on FaceDetected
+	            do call RadioControl.setVolume
+			end
+
+			behavior "Radio Status Change Notification"
+				on RadioState
+    	        do publish RadioStateChanged
+        	end
+		}
+		
+		hasCommandsOf RadioControl {
+			command radio_volume {
+        		context NoiseLevel.value
+         		action RadioControl.setVolume
+      		}
+   		}
+	}
+
+	context WiperState {
+		boolean power;
+		int speed;
+	}
+
+	control WiperControl {
+		boolean power;
+		int speed;
+	}
+
+	@topic("wiper_state_changed")
+	event WiperStateChanged {
+		WiperState wiperstate;
+	}
+
+	@agency(ip="129.254.88.119", port=1883)
+	agent WiperController {
+		hasRuleSet wipercontroller_rules{
+			group-id "org.etri.slice"
+			artifact-id "wipercontroller"
+		}
+		
+		hasBehaviors {
+			behavior "Wiper Control for sleep"
+				on SleepDetected
+        	    do call WiperControl.setSpeed
+			end
+
+			behavior "Wiper Status Change Notification"
+				on WiperState
+        	    do publish WiperStateChanged
+         	end
+		}
+		
+		hasCommandsOf WiperControl {
+			command wiper_speed {
+        		context Rainfall.value
+         		action WiperControl.setSpeed
+      		}
+   		}
+	}
+
+	context WindowState {
+		double percent;
+	}
+
+	control WindowControl {
+		double percent;
+	}
+
+	@topic("window_state_changed")
+	event WindowStateChanged {
+		WindowState window;
+	}
+
+	@agency(ip="129.254.88.119", port=1883)
+	agent WindowController {
+		hasRuleSet wipercontroller_rules{
+			group-id "org.etri.slice"
+			artifact-id "windowcontroller"
+		}
+		
+		hasBehaviors {
+			behavior "Window Control for sleep"
+				on SleepDetected
+       		    do call WindowControl.setPercent
+			end
+
+			behavior "Window Status Change Notification"
+				on WindowState
+            	do publish WindowStateChanged
+         	end
+		}
+		
+		hasCommandsOf WindowControl {
+			command window_height {
+        		context Rainfall.value
+         		action WindowControl.setPercent
+      		}
+ 		}
+	}
+}

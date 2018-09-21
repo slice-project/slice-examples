@@ -1,0 +1,54 @@
+package org.etri.slice.rules.car;
+
+import org.etri.slice.commons.car.context.WiperState;
+import org.etri.slice.commons.car.context.Rainfall;
+import org.etri.slice.commons.car.context.SleepDetect;
+import org.etri.slice.commons.car.event.RainDetected;
+import org.etri.slice.commons.car.event.SleepDetected;
+import org.etri.slice.commons.car.event.UserLeft;
+import org.etri.slice.commons.car.event.WiperStateChanged;
+import org.etri.slice.commons.car.service.WiperControl;
+
+global WiperControl wiperControl;
+
+rule "Wiper Control for sleep #1"
+when
+	$e: SleepDetect(elapsedTime > 5)
+then
+	wiperControl.setSpeed(5);
+end
+
+rule "Subscribe RainDetected #1"
+when
+	$e: Rainfall(value < 50)
+then
+	wiperControl.setSpeed(3);
+end
+
+rule "Subscribe RainDetected #2"
+when
+	$e: Rainfall(50 < value, value < 70)
+then
+	wiperControl.setSpeed(4);
+end
+
+rule "Subscribe RainDetected #3"
+when
+	$e: Rainfall(value > 80)
+then
+	wiperControl.setSpeed(5);
+end
+
+rule "Subscribe RainDetected #4"
+when
+	$e: Rainfall(value < 10)
+then
+	wiperControl.setSpeed(0);
+end
+
+rule "Userseated wiper control"
+	when
+		$e: UserLeft()
+	then
+		wiperControl.setSpeed(0);
+end
