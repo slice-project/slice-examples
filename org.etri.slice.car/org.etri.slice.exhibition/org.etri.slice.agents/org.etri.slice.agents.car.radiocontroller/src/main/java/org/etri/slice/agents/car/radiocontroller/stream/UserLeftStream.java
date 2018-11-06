@@ -32,7 +32,7 @@ import org.etri.slice.commons.car.event.UserLeft;
 @Instantiate(name=UserLeftStream.SERVICE_NAME)
 public class UserLeftStream implements EventStream<UserLeft> {
 
-	public static final String SERVICE_NAME = "UserSeatedStream";
+	public static final String SERVICE_NAME = "UserLeftStream";
 	
 	@Override
 	public TStream<UserLeft> process(TStream<UserLeft> stream) {

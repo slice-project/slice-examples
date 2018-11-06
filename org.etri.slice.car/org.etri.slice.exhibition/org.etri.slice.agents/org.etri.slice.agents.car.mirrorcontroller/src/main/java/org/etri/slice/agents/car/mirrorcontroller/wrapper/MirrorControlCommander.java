@@ -19,7 +19,7 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-package org.etri.slice.agents.car.carseatcontroller.wrapper;
+package org.etri.slice.agents.car.mirrorcontroller.wrapper;
 
 import org.apache.edgent.execution.services.ControlService;
 import org.apache.felix.ipojo.annotations.Component;
@@ -34,15 +34,15 @@ import org.slf4j.LoggerFactory;
 
 import org.etri.slice.commons.car.context.BodyPartLength;
 import org.etri.slice.commons.car.context.SeatPosture;
-import org.etri.slice.commons.car.service.SeatControl;
+import org.etri.slice.commons.car.service.MirrorControl;
 
 @Component
 @Instantiate
-public class SeatControlCommander implements SeatControl {
-	private static Logger s_logger = LoggerFactory.getLogger(SeatControlCommander.class);
+public class MirrorControlCommander implements MirrorControl {
+	private static Logger s_logger = LoggerFactory.getLogger(MirrorControlCommander.class);
 	
 	@Requires
-	private SeatControl m_proxy;
+	private MirrorControl m_proxy;
 	
 	@Requires
 	private ActionLogger m_logger;
@@ -50,39 +50,27 @@ public class SeatControlCommander implements SeatControl {
 	@Requires
 	private Agent m_agent;
 	
-	public SeatControlCommander() {
+	public MirrorControlCommander() {
 		ControlService control = m_agent.getService(ControlService.class);
-		control.registerControl(this.getClass().getSimpleName(), SeatControl.id, null, SeatControl.class, this);
+		control.registerControl(this.getClass().getSimpleName(), MirrorControl.id, null, MirrorControl.class, this);
 	}
 	
 	@Override
-	public double getHeight() {
-		return m_proxy.getHeight();
+	public double getPan() {
+		return m_proxy.getPan();
 	}
 	
 	@Override		        
-	public void setHeight(double height) {
-		m_proxy.setHeight(height);
+	public void setPan(double pan) {
+		m_proxy.setPan(pan);
 		
 		ActionBuilder builder = Action.builder();
-		builder.setRelation("carseat_height");
+		builder.setRelation("mirror_pan");
 		builder.addContext(BodyPartLength.Field.height);
-		builder.setAction(SeatControl.setHeight, height);
-		logAction(builder.build());		
-	}
-	@Override
-	public double getPosition() {
-		return m_proxy.getPosition();
-	}
-	
-	@Override		        
-	public void setPosition(double position) {
-		m_proxy.setPosition(position);
-		
-		ActionBuilder builder = Action.builder();
-		builder.setRelation("carseat_position");
-		builder.addContext(BodyPartLength.Field.height);
-		builder.setAction(SeatControl.setPosition, position);
+		builder.addContext(SeatPosture.Field.height);
+		builder.addContext(SeatPosture.Field.position);
+		builder.addContext(SeatPosture.Field.tilt);
+		builder.setAction(MirrorControl.setPan, pan);
 		logAction(builder.build());		
 	}
 	@Override
@@ -97,22 +85,11 @@ public class SeatControlCommander implements SeatControl {
 		ActionBuilder builder = Action.builder();
 		builder.setRelation("carseat_tilt");
 		builder.addContext(BodyPartLength.Field.height);
-		builder.setAction(SeatControl.setTilt, tilt);
+		builder.addContext(SeatPosture.Field.height);
+		builder.addContext(SeatPosture.Field.position);
+		builder.addContext(SeatPosture.Field.tilt);
+		builder.setAction(MirrorControl.setTilt, tilt);
 		logAction(builder.build());		
-	}
-	@Override
-	public SeatPosture getPosture() {
-		return m_proxy.getPosture();
-	}
-	
-	@Override		        
-	public void setPosture(SeatPosture posture) {
-		m_proxy.setPosture(posture);
-		
-	}
-	@Override
-	public void initialize() {
-		m_proxy.initialize();
 	}
 	private void logAction(Action action) {
 		try {

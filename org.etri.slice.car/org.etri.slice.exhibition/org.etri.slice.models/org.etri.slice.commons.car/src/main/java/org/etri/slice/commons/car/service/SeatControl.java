@@ -28,4 +28,6 @@ public interface SeatControl {
 				        
 	void setPosture(SeatPosture posture);
 	
+	void initialize();
+	
 }

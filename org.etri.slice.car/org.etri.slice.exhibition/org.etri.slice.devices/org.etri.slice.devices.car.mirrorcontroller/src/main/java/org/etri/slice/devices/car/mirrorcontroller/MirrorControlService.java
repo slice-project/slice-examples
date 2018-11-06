@@ -1,4 +1,4 @@
-package org.etri.slice.devices.car.carseatcontroller;
+package org.etri.slice.devices.car.mirrorcontroller;
 
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
@@ -7,8 +7,7 @@ import org.apache.felix.ipojo.annotations.Property;
 import org.apache.felix.ipojo.annotations.Provides;
 import org.apache.felix.ipojo.annotations.Validate;
 import org.etri.slice.commons.SliceException;
-import org.etri.slice.commons.car.context.SeatPosture;
-import org.etri.slice.commons.car.service.SeatControl;
+import org.etri.slice.commons.car.service.MirrorControl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,79 +18,54 @@ import com.hileco.drpc.mqtt.MqttDrpcClientBuilder;
 @Component(publicFactory=false, immediate=true)
 @Provides
 @Instantiate	
-public class SeatControlService implements SeatControl {
+public class MirrorControlService implements MirrorControl {
 	
-	private static Logger s_logger = LoggerFactory.getLogger(SeatControlService.class);	
+	private static Logger s_logger = LoggerFactory.getLogger(MirrorControlService.class);	
 	
 	@Property(name="borker", value="tcp://192.168.0.37:1883")
 	private String m_broker;
-	@Property(name="identifier", value="innosim")
+	@Property(name="identifier", value="innosim/right")
 	private String m_identifier;			
-	private SeatControl m_service;	
+	private MirrorControl m_service;	
 	
 	@Validate
 	public void init() throws SliceException {
 		try {
 	        MqttDrpcClient mqttDrpcClient = new MqttDrpcClientBuilder().build(m_broker);
 	        mqttDrpcClient.connect();
-	        ServiceConnector<SeatControl> connector = mqttDrpcClient.connector(SeatControl.class);
+	        ServiceConnector<MirrorControl> connector = mqttDrpcClient.connector(MirrorControl.class);
 	        m_service = connector.connect(m_identifier);
 		}
 		catch ( Throwable e ) {
 			throw new SliceException(e);
 		}
 		
-		s_logger.info("STARTED: " + SeatControlService.class.getSimpleName());				
+		s_logger.info("STARTED: " + MirrorControlService.class.getSimpleName());		
 	}
 
 	@Invalidate
 	public void fini() throws SliceException {
-		s_logger.info("STOPPED: " + SeatControlService.class.getSimpleName());		
+		s_logger.info("STOPPED: " + MirrorControlService.class.getSimpleName());			
 	}
 	
 	@Override
-	public double getHeight() {
-		return m_service.getHeight();
+	public double getPan() {
+		return m_service.getPan();
 	}
-	
-	@Override		        
-	public void setHeight(double height) {
-		m_service.setHeight(height);
-	}
-	
+
 	@Override
-	public double getPosition() {
-		return m_service.getPosition();
+	public void setPan(double pan) {
+		m_service.setPan(pan);
 	}
-	
-	@Override		        
-	public void setPosition(double position) {
-		m_service.setPosition(position);
-	}
-	
+
 	@Override
 	public double getTilt() {
 		return m_service.getTilt();
 	}
-	
-	@Override		        
+
+	@Override
 	public void setTilt(double tilt) {
 		m_service.setTilt(tilt);
 	}
-	
-	@Override
-	public SeatPosture getPosture() {
-		return m_service.getPosture();
-	}
-	
-	@Override		        
-	public void setPosture(SeatPosture posture) {
-		m_service.setPosture(posture);
-	}
 
-	@Override
-	public void initialize() {
-		m_service.initialize();
-	}
-	
 }

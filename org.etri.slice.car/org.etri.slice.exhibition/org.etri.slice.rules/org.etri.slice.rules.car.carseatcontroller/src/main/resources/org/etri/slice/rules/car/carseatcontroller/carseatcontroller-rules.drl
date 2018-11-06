@@ -22,9 +22,7 @@ rule "Control Seat #Initialization"
 	when
 		$e: UserLeft()
 	then
-		seatControl.setHeight(0);
-		seatControl.setPosition(69);
-		seatControl.setTilt(51);
+		seatControl.initialize();
 end
 
 rule "Control Seat #1"

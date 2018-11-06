@@ -18,26 +18,46 @@
  * along with The ROOT project of SLICE components and applications; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.agents.car.wipercontroller.stream;
 
-import org.apache.edgent.topology.TStream;
+package org.etri.slice.agents.car.mirrorcontroller.wrapper;
+
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
-import org.apache.felix.ipojo.annotations.Provides;
-import org.etri.slice.api.perception.EventStream;
-import org.etri.slice.commons.car.event.UserLeft;
+import org.apache.felix.ipojo.annotations.Requires;
+import org.etri.slice.api.inference.WorkingMemory;
 
-@Component(publicFactory=false, immediate=true)
-@Provides
-@Instantiate(name=UserLeftStream.SERVICE_NAME)
-public class UserLeftStream implements EventStream<UserLeft> {
+import org.etri.slice.commons.car.service.MirrorControl;
 
-	public static final String SERVICE_NAME = "UserLeftStream";
+@Component
+@Instantiate
+public class MirrorControlWrapper implements MirrorControl {
+	
+	@Requires
+	private MirrorControl m_proxy;
+	
+	@Requires
+	private WorkingMemory m_wm;
+	
+	public MirrorControlWrapper() {
+		m_wm.addServiceWrapper(MirrorControl.id, this);
+	}
 	
 	@Override
-	public TStream<UserLeft> process(TStream<UserLeft> stream) {
-		return stream;
+	public double getPan() {
+		return m_proxy.getPan();
 	}
-
+	
+	@Override		        
+	public void setPan(double pan) {
+		m_proxy.setPan(pan);
+	}
+	@Override
+	public double getTilt() {
+		return m_proxy.getTilt();
+	}
+	
+	@Override		        
+	public void setTilt(double tilt) {
+		m_proxy.setTilt(tilt);
+	}
 }
-

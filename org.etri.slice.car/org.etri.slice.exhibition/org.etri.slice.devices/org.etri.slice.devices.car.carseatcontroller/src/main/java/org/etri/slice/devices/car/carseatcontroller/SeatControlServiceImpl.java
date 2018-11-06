@@ -94,5 +94,12 @@ public class SeatControlServiceImpl implements SeatControl {
 	public void setPosture(SeatPosture posture) {
 		m_posture = posture;
 	}
+
+	@Override
+	public void initialize() {
+		m_position = 0;
+		m_height = 0;
+		m_tilt = 0;
+	}
 	
 }

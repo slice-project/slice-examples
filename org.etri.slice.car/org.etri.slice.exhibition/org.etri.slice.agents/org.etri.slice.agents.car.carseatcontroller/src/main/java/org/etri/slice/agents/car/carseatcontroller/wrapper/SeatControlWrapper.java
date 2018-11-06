@@ -79,4 +79,8 @@ public class SeatControlWrapper implements SeatControl {
 	public void setPosture(SeatPosture posture) {
 		m_proxy.setPosture(posture);
 	}
+	@Override
+	public void initialize() {
+		m_proxy.initialize();
+	}
 }

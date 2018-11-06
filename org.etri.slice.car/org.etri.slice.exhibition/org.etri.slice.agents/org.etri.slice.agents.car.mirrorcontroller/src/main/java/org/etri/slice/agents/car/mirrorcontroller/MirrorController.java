@@ -18,26 +18,41 @@
  * along with The ROOT project of SLICE components and applications; see the file COPYING.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package org.etri.slice.agents.car.wipercontroller.stream;
+package org.etri.slice.agents.car.mirrorcontroller;
 
-import org.apache.edgent.topology.TStream;
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
+import org.apache.felix.ipojo.annotations.Property;
 import org.apache.felix.ipojo.annotations.Provides;
-import org.etri.slice.api.perception.EventStream;
-import org.etri.slice.commons.car.event.UserLeft;
+import org.etri.slice.api.agent.Agent;
+import org.etri.slice.core.agent.AbstractAgent;
 
 @Component(publicFactory=false, immediate=true)
 @Provides
-@Instantiate(name=UserLeftStream.SERVICE_NAME)
-public class UserLeftStream implements EventStream<UserLeft> {
-
-	public static final String SERVICE_NAME = "UserLeftStream";
+@Instantiate
+public class MirrorController extends AbstractAgent implements Agent {
 	
+	@Property(name="groupId", value="org.etri.slice")
+	public String groupId;
+	
+	@Property(name="artifactId", value="org.etri.slice.rules.car.mirrorcontroller")
+	public String artifactId;	
+	
+//	@Property(name="version", value="0.0.1")
+	public String version;
+
 	@Override
-	public TStream<UserLeft> process(TStream<UserLeft> stream) {
-		return stream;
+	public String getGroupId() {
+		return groupId;
 	}
 
-}
+	@Override
+	public String getArtifactId() {
+		return artifactId;
+	}
 
+	@Override
+	public String getVersion() {
+		return version;
+	}
+}
