@@ -1,3 +1,6 @@
+# slice-examples :: final-poc
+This is branch for example implementation which is used as final PoC.
+
 ## SLICE Example implementations Repository ##
 > This is SLICE Example implementations repository.
 
