@@ -24,4 +24,4 @@ This is branch for example implementation which is used as final PoC.
 
 >> SLICE Engine distribution :: [slice-engine-dist](https://github.com/slice-project/slice-engine-dist.git)
 
->> SLICE Example implementations(this) :: [slice-examples](https://github.com/slice-project/slice-examples)
+>> SLICE Example implementations (this) :: [slice-examples](https://github.com/slice-project/slice-examples)
