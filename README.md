@@ -1,7 +1,7 @@
 # slice-examples :: sample
 This is branch for SLICE tutorial implemtation (simpliest)
 
-# SLICE Example implementations Repository #
+## SLICE Example implementations Repository ##
 > This is SLICE Example implementations repository.
 
 > Each branch has example implmentation of SLICE framework
