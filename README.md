@@ -24,5 +24,5 @@ This is branch for SLICE tutorial implemtation (simpliest)
 
 >> SLICE Engine distribution :: [slice-engine-dist](https://github.com/slice-project/slice-engine-dist.git)
 
->> SLICE Example implementations(this) :: [slice-examples](https://github.com/slice-project/slice-examples)
+>> SLICE Example implementations (this) :: [slice-examples](https://github.com/slice-project/slice-examples)
 
