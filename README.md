@@ -4,11 +4,11 @@
 > Each branch has example implmentation of SLICE framework
 
 >> Currently, we have following branch as example implementations
->>> * sample :: simpliest implemntation for SLICE tutorial 
+>>> [* sample :: simpliest implemntation for SLICE tutorial](https://github.com/slice-project/slice-examples/tree/sample)
 
->>> * coex-exhibition :: example implementation which is used for coex exhibition.
+>>> [* coex-exhibition :: example implementation which is used for coex exhibition](https://github.com/slice-project/slice-examples/tree/coex-exhibition)
 
->>> * final-poc :: example implementation which is used for final project PoC
+>>> [* final-poc :: example implementation which is used for final project PoC](https://github.com/slice-project/slice-examples/tree/final-poc)
 
 ## Structure of SLICE github Repository ##
 > We devide our source code based on the following categories..
