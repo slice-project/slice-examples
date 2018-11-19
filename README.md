@@ -1,9 +1,10 @@
 # SLICE Example implementations Repository #
 > This is SLICE Example implementations repository.
 
-> SLICE patform consists of Framework and Engine.
-
->> Application developer uses SLICE framework to easily define and release software module to the repository and easily deploy it to the edge devices.
+> Each branch has example implmentation of SLICE framework
+>> Currently, we have following branch as example implementations
+>>> coex-exhibition
+>>> sample-implementation
 
 ## Structure of SLICE github Repository ##
 > We devide our source code based on the following categories..
