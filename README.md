@@ -4,9 +4,9 @@
 > Each branch has example implmentation of SLICE framework
 
 >> Currently, we have following branch as example implementations
->>> coex-exhibition
+>>> * coex-exhibition
 
->>> sample-implementation
+>>> * sample-implementation
 
 ## Structure of SLICE github Repository ##
 > We devide our source code based on the following categories..
