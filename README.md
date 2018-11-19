@@ -7,7 +7,7 @@ This is branch for SLICE tutorial implemtation (simpliest)
 > Each branch has example implmentation of SLICE framework
 
 >> Currently, we have following branch as example implementations
->>> [* sample (this) :: simpliest implemntation for SLICE tutorial](https://github.com/slice-project/slice-examples/tree/sample)
+>>> [* sample (this branch) :: simpliest implemntation for SLICE tutorial](https://github.com/slice-project/slice-examples/tree/sample)
 
 >>> [* coex-exhibition :: example implementation which is used for coex exhibition](https://github.com/slice-project/slice-examples/tree/coex-exhibition)
 
