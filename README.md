@@ -1,10 +1,10 @@
-# SLICE Example implementations Repository #
+# SLICE Example implementations Repository (master branch) #
 > This is SLICE Example implementations repository.
 
 > Each branch has example implmentation of SLICE framework
 
 >> Currently, we have following branch as example implementations
->>> [* sample :: simpliest implemntation for SLICE tutorial](https://github.com/slice-project/slice-examples/tree/sample)
+>>> [* sample :: simple implemntation for SLICE tutorial](https://github.com/slice-project/slice-examples/tree/sample)
 
 >>> [* coex-exhibition :: example implementation which is used for coex exhibition](https://github.com/slice-project/slice-examples/tree/coex-exhibition)
 
