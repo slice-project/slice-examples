@@ -1,0 +1,5 @@
+package org.etri.slice.rules.car;
+
+	
+global WindowControl windowControl;
+

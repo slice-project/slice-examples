@@ -1,0 +1,21 @@
+package org.etri.slice.rules.car;
+
+import org.etri.slice.commons.car.context.NoiseLevel;
+import org.etri.slice.commons.car.context.Rainfall;
+import org.etri.slice.commons.car.event.NoiseDetected;
+import org.etri.slice.commons.car.event.RainDetected;
+
+
+rule "Rain Detection Notificiation"
+	when
+		$e: Rainfall()
+	then
+		channels["rain_detected"].send(new RainDetected($e));
+end
+
+rule "NoiseLevel Detection Notification"
+	when
+		$e: NoiseLevel()
+	then
+		channels["noise_detected"].send(new NoiseDetected($e));
+end
