@@ -1,5 +1,5 @@
-# SLICE Example implementations Repository (master branch) #
-> This is SLICE Example implementations repository.
+# SLICE Example implementations Repository #
+> This is SLICE Example implementations repository. (currently in master branch)
 
 > Each branch has example implmentation of SLICE framework
 
