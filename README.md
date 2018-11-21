@@ -8,7 +8,7 @@
 
 >>> [* coex-exhibition :: example implementation which is used for coex exhibition](https://github.com/slice-project/slice-examples/tree/coex-exhibition)
 
->>> [* final-poc :: example implementation which is used for final project PoC](https://github.com/slice-project/slice-examples/tree/final-poc)
+>>> [* final-poc :: example implementation which is used for project PoC](https://github.com/slice-project/slice-examples/tree/final-poc)
 
 ## Structure of SLICE github Repository ##
 > We devide our source code based on the following categories..
