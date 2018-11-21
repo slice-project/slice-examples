@@ -1,5 +1,5 @@
 # slice-examples :: sample
-This is branch for SLICE tutorial implemtation (simpliest)
+This is branch for SLICE tutorial implemtation
 
 ## SLICE Example implementations Repository ##
 > This is SLICE Example implementations repository.
