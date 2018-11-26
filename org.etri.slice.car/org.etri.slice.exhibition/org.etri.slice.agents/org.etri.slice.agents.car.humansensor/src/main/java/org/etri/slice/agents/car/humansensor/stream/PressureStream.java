@@ -50,7 +50,6 @@ public class PressureStream implements EventStream<Pressure> {
 			
 			return interval > 3000;
 		});
-
 	}
 
 }
