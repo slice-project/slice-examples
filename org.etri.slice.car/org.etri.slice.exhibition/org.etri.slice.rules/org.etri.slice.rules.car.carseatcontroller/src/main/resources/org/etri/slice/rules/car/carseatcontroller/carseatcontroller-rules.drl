@@ -1,0 +1,86 @@
+package org.etri.slice.rules.car;
+
+import org.etri.slice.commons.car.context.SeatPosture;
+import org.etri.slice.commons.car.context.BodyPartLength;
+import org.etri.slice.commons.car.event.SeatPostureChanged;
+import org.etri.slice.commons.car.event.UserSeated;
+import org.etri.slice.commons.car.event.UserLeft;
+import org.etri.slice.commons.car.service.HandySoft;
+import org.etri.slice.commons.car.service.SeatControl;
+
+global SeatControl seatControl;
+global HandySoft handySoft;
+
+rule "SeatPosture Change Notificiation"
+	when
+		$e: SeatPosture()
+	then
+		channels["seat_posture_changed"].send(new SeatPostureChanged($e));
+end
+
+rule "Control Seat #Initialization"
+	when
+		$e: UserLeft()
+	then
+		seatControl.initialize();
+end
+
+rule "Control Seat #1"
+	when
+		$e1: UserSeated(bodyLength.getHeight() > 180)
+	then
+		seatControl.setHeight(20);
+		seatControl.setPosition(87);
+		seatControl.setTilt(57);
+		handySoft.setHeight(20);
+		handySoft.setPosition(87);
+		handySoft.setTilt(57);
+end
+
+rule "Control Seat #2"
+	when
+		$e1: UserSeated(bodyLength.getHeight() > 175, bodyLength.getHeight() < 180)
+	then
+		seatControl.setHeight(25);
+		seatControl.setPosition(77);
+		seatControl.setTilt(47);
+		handySoft.setHeight(25);
+		handySoft.setPosition(77);
+		handySoft.setTilt(47);
+end
+
+rule "Control Seat #3"
+	when
+		$e1: UserSeated(bodyLength.getHeight() > 170, bodyLength.getHeight() < 175)
+	then
+		seatControl.setHeight(30);
+		seatControl.setPosition(67);
+		seatControl.setTilt(40);
+		handySoft.setHeight(30);
+		handySoft.setPosition(67);
+		handySoft.setTilt(40);
+end
+
+rule "Control Seat #4"
+	when
+		$e1: UserSeated(bodyLength.getHeight() > 165, bodyLength.getHeight() < 170)
+	then
+		seatControl.setHeight(35);
+		seatControl.setPosition(55);
+		seatControl.setTilt(35);
+		handySoft.setHeight(35);
+		handySoft.setPosition(55);
+		handySoft.setTilt(35);
+end
+
+rule "Control Seat #5"
+	when
+		$e1: UserSeated(bodyLength.getHeight() < 165)
+	then
+		seatControl.setHeight(40);
+		seatControl.setPosition(50);
+		seatControl.setTilt(30);
+		handySoft.setHeight(40);
+		handySoft.setPosition(50);
+		handySoft.setTilt(30);
+end

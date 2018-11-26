@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="installedFeatures">
+		<item value="org.eclipse.egit:5.0.0.201806131550-r"/>
+		<item value="org.eclipse.emf.common:2.14.0.v20180527-1134"/>
+		<item value="org.eclipse.emf.ecore:2.14.0.v20180529-1144"/>
+		<item value="org.eclipse.help:2.2.200.v20180611-0500"/>
+		<item value="org.eclipse.jdt:3.14.0.v20180611-0500"/>
+		<item value="org.eclipse.jgit:5.0.0.201806131550-r"/>
+		<item value="org.eclipse.m2e.feature:1.9.0.20180606-2036"/>
+		<item value="org.eclipse.pde:3.13.100.v20180611-0826"/>
+		<item value="org.eclipse.platform:4.8.0.v20180611-0656"/>
+		<item value="org.eclipse.rcp:4.8.0.v20180611-0656"/>
+		<item value="org.eclipse.xtend.sdk:2.14.0.v20180523-0937"/>
+		<item value="org.eclipse.xtext.ui:2.14.0.v20180523-0937"/>
+		<item value="org.eclipse.xtext.xbase.lib:2.14.0.v20180522-1631"/>
+		<item value="org.eclipse.xtext.xbase:2.14.0.v20180523-0937"/>
+		<item value="org.eclipse.xtext.xtext.ui:2.14.0.v20180523-0937"/>
+	</list>
+	<section name="ExternalProjectImportWizard">
+	</section>
+</section>

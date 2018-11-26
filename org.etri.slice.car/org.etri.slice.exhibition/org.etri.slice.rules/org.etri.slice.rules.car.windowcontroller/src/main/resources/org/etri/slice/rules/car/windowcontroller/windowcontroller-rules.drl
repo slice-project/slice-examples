@@ -1,0 +1,40 @@
+package org.etri.slice.rules.car;
+
+import org.etri.slice.commons.car.context.WindowState;
+import org.etri.slice.commons.car.context.SleepDetect;
+import org.etri.slice.commons.car.event.RainDetected;
+import org.etri.slice.commons.car.event.SleepDetected;
+import org.etri.slice.commons.car.event.UserSeated;
+import org.etri.slice.commons.car.event.UserLeft;
+import org.etri.slice.commons.car.event.WindowStateChanged;
+import org.etri.slice.commons.car.service.WindowControl;
+
+global WindowControl windowControl;
+
+rule "Window Control for sleep"
+	when
+		$e: SleepDetect(elapsedTime > 5)
+	then
+		windowControl.setPercent(0);
+end
+
+rule "Window Control for rainfall"
+	when
+		$e: RainDetected()
+	then
+		windowControl.setPercent(100);
+end
+
+rule "UserSeated window control"
+	when
+		$e:UserSeated()
+	then
+		windowControl.setPercent(0);
+end
+
+rule "UserLeft window control"
+	when
+		$e: UserLeft()
+	then
+		windowControl.setPercent(100);
+end

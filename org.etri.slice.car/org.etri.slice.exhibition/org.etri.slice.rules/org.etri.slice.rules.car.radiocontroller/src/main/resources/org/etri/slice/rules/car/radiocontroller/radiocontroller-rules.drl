@@ -1,0 +1,96 @@
+package org.etri.slice.rules.car;
+
+import org.etri.slice.commons.car.context.HumanInfo;
+import org.etri.slice.commons.car.context.SleepDetect;
+import org.etri.slice.commons.car.event.FaceDetected;
+import org.etri.slice.commons.car.event.RadioStateChanged;
+import org.etri.slice.commons.car.event.SleepDetected;
+import org.etri.slice.commons.car.event.UserLeft;
+import org.etri.slice.commons.car.service.RadioControl;
+import org.etri.slice.commons.car.service.HandySoft;
+
+global RadioControl radioControl;
+global HandySoft handySoft;
+
+
+rule "FaceDetection"
+	when
+		$e: FaceDetected()
+	then	
+end
+
+rule "Userseated upress volume"
+	when
+		$e: UserLeft()
+	then
+		radioControl.setPower(false);
+end
+
+
+rule "Radio Control for sleep"
+	when
+		$e: SleepDetect(elapsedTime > 0)
+	then
+		radioControl.setPower(false);
+		radioControl.setVolume(0);
+end
+
+rule "Radio Setup for Human (young, man) #1"
+	when
+		$e: HumanInfo(gender == 1, ((age_low+age_high)/2) < 30)
+	then
+		radioControl.setPower(true);
+		radioControl.setVolume(30);
+		radioControl.setChannel(0);
+		handySoft.setChannel(1);
+end
+
+rule "Radio Setup for Human (young, woman) #2"
+	when
+		$e: HumanInfo(gender == 0, ((age_low+age_high)/2) < 30)
+	then
+		radioControl.setPower(true);
+		radioControl.setVolume(30);
+		radioControl.setChannel(1);
+		handySoft.setChannel(2);
+end
+
+rule "Radio Setup for Human (middle, man) #3"
+	when
+		$e: HumanInfo(gender == 1, 30 < ((age_low+age_high)/2), ((age_low+age_high)/2) < 40)
+	then
+		radioControl.setPower(true);
+		radioControl.setVolume(30);
+		radioControl.setChannel(2);
+		handySoft.setChannel(3);
+end
+
+rule "Radio Setup for Human (middle, woman) #4"
+	when
+		$e: HumanInfo(gender == 0, 30 < ((age_low+age_high)/2), ((age_low+age_high)/2) < 40)
+	then
+		radioControl.setPower(true);
+		radioControl.setVolume(30);
+		radioControl.setChannel(3);
+		handySoft.setChannel(4);
+end
+
+rule "Radio Setup for Human (old, man) #5"
+	when
+		$e: HumanInfo(gender == 1, 40 < ((age_low+age_high)/2))
+	then
+		radioControl.setPower(true);
+		radioControl.setVolume(30);
+		radioControl.setChannel(4);
+		handySoft.setChannel(5);
+end
+
+rule "Radio Setup for Human (old, woman) #6"
+	when
+		$e: HumanInfo(gender == 0, 40 < ((age_low+age_high)/2))
+	then
+		radioControl.setPower(true);
+		radioControl.setVolume(30);
+		radioControl.setChannel(5);
+		handySoft.setChannel(6);
+end
