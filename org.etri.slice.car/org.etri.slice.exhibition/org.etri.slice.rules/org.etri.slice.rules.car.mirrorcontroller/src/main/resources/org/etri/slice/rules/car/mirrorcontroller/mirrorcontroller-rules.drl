@@ -1,6 +1,24 @@
 package org.etri.slice.rules.car;
 
+import org.etri.slice.commons.car.event.SeatPostureChanged;
+import org.etri.slice.commons.car.event.UserSeated;
+import org.etri.slice.commons.car.service.MirrorControl;
 
+global MirrorControl mirrorControl;
+
+rule "Subscribe SeatPosture Event"
+	when
+		$e: SeatPostureChanged($posture: seat)
+	then
+		mirrorControl.adjustPosture($posture);
+end
+
+rule "Subscribe UserSeated Event"
+	when
+		$e: UserSeated($torso: bodyLength.getTorso())
+	then
+		mirrorControl.setSittingHeight($torso);
+end
 
 
 

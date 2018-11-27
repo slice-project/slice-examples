@@ -1,6 +1,7 @@
 package org.etri.slice.commons.car.service;
 
 import javax.management.MXBean;
+import org.etri.slice.commons.car.context.SeatPosture;
 
 @MXBean
 public interface MirrorControl {
@@ -16,5 +17,9 @@ public interface MirrorControl {
 	double getTilt();
 				        
 	void setTilt(double tilt);
+	
+	void setSittingHeight(double height);
+	
+	void adjustPosture(SeatPosture posture);	
 	
 }

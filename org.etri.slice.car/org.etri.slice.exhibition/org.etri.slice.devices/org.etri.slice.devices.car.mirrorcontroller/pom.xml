@@ -23,7 +23,12 @@
 			<groupId>com.hileco</groupId>
 			<artifactId>mqtt-drpc</artifactId>
 			<version>1.0.1</version>
-		</dependency>		
+		</dependency>
+		<dependency>
+			<groupId>com.kmcrobot</groupId>
+			<artifactId>msm</artifactId>
+			<version>1.0.1</version>
+		</dependency>					
 	</dependencies>
 
 	<build>

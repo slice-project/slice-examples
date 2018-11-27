@@ -25,7 +25,7 @@ import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Requires;
 import org.etri.slice.api.inference.WorkingMemory;
-
+import org.etri.slice.commons.car.context.SeatPosture;
 import org.etri.slice.commons.car.service.MirrorControl;
 
 @Component
@@ -59,5 +59,15 @@ public class MirrorControlWrapper implements MirrorControl {
 	@Override		        
 	public void setTilt(double tilt) {
 		m_proxy.setTilt(tilt);
+	}
+
+	@Override
+	public void setSittingHeight(double height) {
+		m_proxy.setSittingHeight(height);		
+	}
+
+	@Override
+	public void adjustPosture(SeatPosture posture) {
+		m_proxy.adjustPosture(posture);		
 	}
 }

@@ -81,7 +81,8 @@ public class SeatControlService implements SeatControl {
 	
 	@Override
 	public SeatPosture getPosture() {
-		return m_service.getPosture();
+		SeatPosture posture = SeatPosture.builder().height(getHeight()).position(getPosition()).tilt(getTilt()).build();
+		return posture;
 	}
 	
 	@Override		        

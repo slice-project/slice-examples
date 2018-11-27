@@ -7,6 +7,7 @@ import org.apache.felix.ipojo.annotations.Property;
 import org.apache.felix.ipojo.annotations.Provides;
 import org.apache.felix.ipojo.annotations.Validate;
 import org.etri.slice.commons.SliceException;
+import org.etri.slice.commons.car.context.SeatPosture;
 import org.etri.slice.commons.car.service.MirrorControl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -70,6 +71,16 @@ public class MirrorControlServiceImpl implements MirrorControl {
 	@Override
 	public void setTilt(double tilt) {
 		m_tilt = tilt;
+	}
+
+	@Override
+	public void setSittingHeight(double height) {
+				
+	}
+
+	@Override
+	public void adjustPosture(SeatPosture posture) {
+		
 	}
 	
 

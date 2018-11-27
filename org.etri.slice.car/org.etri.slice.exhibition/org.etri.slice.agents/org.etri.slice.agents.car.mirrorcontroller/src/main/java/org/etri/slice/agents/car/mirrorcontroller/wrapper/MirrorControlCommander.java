@@ -98,5 +98,15 @@ public class MirrorControlCommander implements MirrorControl {
 		catch ( Exception e ) {
 			s_logger.error("ERR : " + e.getMessage());
 		}			
+	}
+
+	@Override
+	public void setSittingHeight(double height) {
+		m_proxy.setSittingHeight(height);		
+	}
+
+	@Override
+	public void adjustPosture(SeatPosture posture) {
+		m_proxy.adjustPosture(posture);		
 	}			
 }
