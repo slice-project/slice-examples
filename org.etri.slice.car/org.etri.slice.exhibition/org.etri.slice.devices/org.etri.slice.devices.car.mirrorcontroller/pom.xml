@@ -47,6 +47,7 @@
 						<Embed-Dependency>${embed.dependency}</Embed-Dependency>
 						<Embed-Directory>${embed.directory}</Embed-Directory>	
 						<Private-Package>${private.packages}</Private-Package>
+						<Import-Package>*;resolution:=optional</Import-Package>
 					</instructions>
 				</configuration>
 			</plugin>

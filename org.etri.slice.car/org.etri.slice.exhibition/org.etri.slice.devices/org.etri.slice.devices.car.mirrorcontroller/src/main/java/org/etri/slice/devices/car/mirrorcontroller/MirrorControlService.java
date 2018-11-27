@@ -92,10 +92,14 @@ public class MirrorControlService implements MirrorControl {
 		int tilt = (int)posture.getTilt();
 		int position = (int)posture.getPosition();
 		int height = (int)posture.getHeight();
-		
+				
 		MSM_Point3d head  = m_msm.Get_Head_Position(m_torso, 90, tilt, position, height);
+		s_logger.info("head position(x=" + head.x + ", y=" + head.y + ", z=" + head.z);
+		
 		m_msm.Set_MSM_PT_Correction(m_panOffset, m_tiltOffset, 0, 0);		
 		MSM_PT_Property adjust = m_msm.Get_MSM_PT(head);
+		s_logger.info("ADJUST(pan=" + adjust.LM_Panning_P + ", tilt=" + adjust.LM_Tilting_P);
+		
 		m_service.setPan(adjust.LM_Panning_P);
 		m_service.setTilt(adjust.LM_Tilting_P);
 	}

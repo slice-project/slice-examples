@@ -34,12 +34,11 @@ import org.etri.slice.commons.SliceException;
 import org.etri.slice.commons.car.context.SeatPosture;
 import org.etri.slice.commons.car.service.SeatControl;
 import org.etri.slice.commons.device.AbstractPollingSensor;
-import org.etri.slice.commons.device.DataListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;		
 
 @Component(publicFactory=false, immediate=true)
-@Provides(specifications= {DataListener.class})
+@Provides
 @Instantiate
 public class SeatPostureSensor extends AbstractPollingSensor<SeatPosture> {
 	
@@ -58,8 +57,8 @@ public class SeatPostureSensor extends AbstractPollingSensor<SeatPosture> {
 	@Override
 	@Validate
 	public void start() throws SliceException {
-		super.start();
 		m_posture = m_service.getPosture();
+		super.start();		
 		s_logger.info("STARTED: " + SeatPostureSensor.class.getSimpleName());			
 	}
 	
@@ -72,6 +71,7 @@ public class SeatPostureSensor extends AbstractPollingSensor<SeatPosture> {
 
 	@Override
 	protected void publish(SeatPosture posture) {
+		System.out.println("POSTURE ----------- " + posture);		
 		if ( isChanged(posture) ) {
 			m_publisher.sendData(posture);
 			s_logger.info("PUB: " + posture);
