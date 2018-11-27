@@ -25,7 +25,7 @@ public class MirrorControlServiceImpl implements MirrorControl {
 	
 	@Property(name="borker", value="tcp://192.168.0.37:1883")
 	private String m_broker;
-	@Property(name="identifier", value="innosim/right")
+	@Property(name="identifier", value="innosim/left")
 	private String m_identifier;			
 
 	double m_pan;

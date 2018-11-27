@@ -44,10 +44,10 @@ public class MirrorControlCommandAdaptor extends AbstractMqttSubscriber<MqttComm
 	private static final long serialVersionUID = -2213699316678016574L;
 	private static Logger s_logger = LoggerFactory.getLogger(MirrorControlCommandAdaptor.class);		
 
-	@Property(name="topic", value="d/RightMirror")
+	@Property(name="topic", value="d/LeftMirror")
 	private String m_topic;
 	
-	@Property(name="port", value="3403")
+	@Property(name="port", value="3404")
 	private int m_port;	
 	
 	@Requires
