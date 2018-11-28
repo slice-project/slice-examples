@@ -6,8 +6,8 @@ import org.etri.slice.commons.room.event.TemperatureChanged;
 
 rule "Temperature Change Detection"
 	when
-		$e: Temperature(/* */)
+		$e: Temperature()
 	then
-		channels["temperate_changed"].send(new TemperatureChanged(/* */));
+		channels["temperate_changed"].send(new TemperatureChanged($e));
 end
 

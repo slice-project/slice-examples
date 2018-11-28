@@ -19,6 +19,7 @@ public class ElectronicFanService implements ElectronicFan {
 	private static Logger s_logger = LoggerFactory.getLogger(ElectronicFanService.class);	
 	
 	private ElectronicFan m_service;	
+	int Level = 0;
 			
 	@Validate
 	public void init() throws SliceException {
@@ -32,12 +33,12 @@ public class ElectronicFanService implements ElectronicFan {
 		
 	@Override
 	public int getLevel() {
-		return m_service.getLevel();
+		return Level;
 	}
 	
 	@Override		        
 	public void setLevel(int level) {
-		m_service.setLevel(level);
+		Level = level;
 	}
 	
 }

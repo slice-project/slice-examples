@@ -17,7 +17,7 @@
 		<distributionManagement>
 			<repository>
 				<id>slice-mvn-hosted</id>
-				<url>http://129.254.88.119:8081/nexus/content/repositories/releases/</url>
+				<url>http://192.168.0.37:8081/nexus/content/repositories/releases/</url>
 			</repository>
 		</distributionManagement>	
 		
@@ -38,7 +38,7 @@
 				   </executions>
 				   <configuration>
 				      <serverId>nexus</serverId>
-				      <nexusUrl>http://129.254.88.119:8081/nexus/</nexusUrl>
+				      <nexusUrl>http://192.168.0.37:8081/nexus/</nexusUrl>
 				      <skipStaging>true</skipStaging>
 				   </configuration>
 				</plugin>			

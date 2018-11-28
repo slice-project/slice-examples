@@ -96,7 +96,6 @@
 			<artifactId>org.etri.slice.commons.room</artifactId>
 			<version>0.9.1</version>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.etri.slice</groupId>
 			<artifactId>org.etri.slice.agents.room.temperaturedetector</artifactId>
@@ -106,7 +105,7 @@
 			<groupId>org.etri.slice.devices</groupId>
 			<artifactId>org.etri.slice.devices.room.temperaturedetector</artifactId>
 			<version>0.9.1</version>
-		</dependency>
+		</dependency>		
 <!--	
 		<dependency>
 			<groupId>org.etri.slice</groupId>
