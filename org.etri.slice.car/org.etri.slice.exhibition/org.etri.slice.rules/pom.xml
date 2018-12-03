@@ -13,7 +13,8 @@
 		<module>org.etri.slice.rules.car.humansensor</module>
 		<module>org.etri.slice.rules.car.carseatcontroller</module>
 		<module>org.etri.slice.rules.car.envsensor</module>
-		<module>org.etri.slice.rules.car.mirrorcontroller</module>
+		<module>org.etri.slice.rules.car.mirrorcontroller.left</module>
+		<module>org.etri.slice.rules.car.mirrorcontroller.right</module>
 		<module>org.etri.slice.rules.car.radiocontroller</module>
 		<module>org.etri.slice.rules.car.wipercontroller</module>
 		<module>org.etri.slice.rules.car.windowcontroller</module>

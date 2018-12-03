@@ -1,0 +1,8 @@
+package org.etri.slice.rules.car;
+
+import org.etri.slice.commons.car.context.BodyPartLength;
+import org.etri.slice.commons.car.context.SeatPosture;
+import org.etri.slice.commons.car.service.MirrorControl;
+	
+global MirrorControl mirrorControl;
+

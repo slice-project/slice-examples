@@ -17,7 +17,8 @@
 		<module>org.etri.slice.agents.car.humansensor</module>
 		<module>org.etri.slice.agents.car.carseatcontroller</module>
 		<module>org.etri.slice.agents.car.envsensor</module>
-		<module>org.etri.slice.agents.car.mirrorcontroller</module>
+		<module>org.etri.slice.agents.car.mirrorcontroller.left</module>
+		<module>org.etri.slice.agents.car.mirrorcontroller.right</module>
 		<module>org.etri.slice.agents.car.radiocontroller</module>
 		<module>org.etri.slice.agents.car.wipercontroller</module>
 		<module>org.etri.slice.agents.car.windowcontroller</module>

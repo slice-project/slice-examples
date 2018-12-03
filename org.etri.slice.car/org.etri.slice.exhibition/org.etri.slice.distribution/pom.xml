@@ -36,47 +36,6 @@
 			<version>5.6.8</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.apache.felix</groupId>
-		    <artifactId>org.apache.felix.configadmin</artifactId>
-		    <version>1.8.4</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.apache.felix</groupId>
-		    <artifactId>org.apache.felix.http.api</artifactId>
-		    <version>2.3.2</version>
-		</dependency>				
-		<dependency>
-		    <groupId>org.apache.felix</groupId>
-		    <artifactId>org.apache.felix.http.jetty</artifactId>
-		    <version>3.0.2</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.apache.felix</groupId>
-		    <artifactId>org.apache.felix.http.servlet-api</artifactId>
-		    <version>1.1.0</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.apache.felix</groupId>
-		    <artifactId>org.apache.felix.webconsole</artifactId>
-		    <version>4.3.4-all</version>
-		    <scope>provided</scope>
-		</dependency>								
-		<dependency>
-		    <groupId>org.apache.felix</groupId>
-		    <artifactId>org.apache.felix.webconsole.plugins.obr</artifactId>
-		    <version>1.0.4</version>
-		</dependency>			
-		<dependency>
-		    <groupId>org.apache.felix</groupId>
-		    <artifactId>org.apache.felix.webconsole.plugins.event</artifactId>
-		    <version>1.1.8</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.apache.felix</groupId>
-		    <artifactId>org.apache.felix.webconsole.plugins.memoryusage</artifactId>
-		    <version>1.0.8</version>
-		</dependency>
-		<dependency>
 			<groupId>org.etri.slice</groupId>
 			<artifactId>org.etri.slice.api</artifactId>
 			<version>0.9.1</version>

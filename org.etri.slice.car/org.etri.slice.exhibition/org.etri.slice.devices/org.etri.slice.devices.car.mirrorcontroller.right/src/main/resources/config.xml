@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="LR_M_DistanceX">1530</entry>
+	<entry key="LR_M_DistanceY">0</entry>
+	<entry key="LM2H_DistanceX">640</entry>
+	<entry key="LM2H_Min_DistanceY">586</entry>
+	<entry key="M_HeightZ">585</entry>
+	<entry key="Seat_Min_HeightZ">260</entry>
+	<entry key="LM_Panning_Min">11.7</entry>
+	<entry key="LM_Panning_Max">33</entry>
+	<entry key="RM_Panning_Min">-37</entry>
+	<entry key="RM_Panning_Max">-13</entry>
+	<entry key="Tilting_Min">-15</entry>
+	<entry key="Tilting_Max">13</entry>
+</properties>
