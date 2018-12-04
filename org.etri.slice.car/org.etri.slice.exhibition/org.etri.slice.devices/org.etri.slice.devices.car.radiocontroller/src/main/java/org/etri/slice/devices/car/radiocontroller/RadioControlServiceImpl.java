@@ -7,6 +7,7 @@ import org.apache.felix.ipojo.annotations.Property;
 import org.apache.felix.ipojo.annotations.Provides;
 import org.apache.felix.ipojo.annotations.Validate;
 import org.etri.slice.commons.SliceException;
+import org.etri.slice.commons.car.context.HumanInfo;
 import org.etri.slice.commons.car.service.RadioControl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +18,7 @@ import com.hileco.drpc.mqtt.MqttDrpcClientBuilder;
 
 @Component(publicFactory=false, immediate=true)
 @Provides
-@Instantiate	
+//@Instantiate	
 public class RadioControlServiceImpl implements RadioControl {
 	
 	private static Logger s_logger = LoggerFactory.getLogger(RadioControlServiceImpl.class);	
@@ -81,6 +82,11 @@ public class RadioControlServiceImpl implements RadioControl {
 	@Override
 	public void setChannel(int channel) {
 		m_channel = channel;
+	}
+
+	@Override
+	public int getRecommendedGanre(HumanInfo info) {
+		return 0;
 	}
 	
 }

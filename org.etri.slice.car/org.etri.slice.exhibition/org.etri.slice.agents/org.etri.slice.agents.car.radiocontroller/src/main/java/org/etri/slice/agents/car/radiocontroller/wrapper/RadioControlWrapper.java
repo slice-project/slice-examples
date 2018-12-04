@@ -25,7 +25,7 @@ import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
 import org.apache.felix.ipojo.annotations.Requires;
 import org.etri.slice.api.inference.WorkingMemory;
-
+import org.etri.slice.commons.car.context.HumanInfo;
 import org.etri.slice.commons.car.service.RadioControl;
 
 @Component
@@ -68,5 +68,10 @@ public class RadioControlWrapper implements RadioControl {
 	@Override		        
 	public void setChannel(int channel) {
 		m_proxy.setChannel(channel);
+	}
+
+	@Override
+	public int getRecommendedGanre(HumanInfo info) {
+		return m_proxy.getRecommendedGanre(info);
 	}
 }

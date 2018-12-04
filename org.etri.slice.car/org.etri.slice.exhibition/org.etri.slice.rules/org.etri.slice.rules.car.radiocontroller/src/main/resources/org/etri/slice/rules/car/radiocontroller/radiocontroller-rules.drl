@@ -35,6 +35,18 @@ rule "Radio Control for sleep"
 		radioControl.setVolume(0);
 end
 
+rule "Radio Setup for Human"
+	when
+		$e: HumanInfo()
+	then
+		radioControl.setPower(true);
+		radioControl.setVolume(30);
+		int ganre = radioControl.getRecommendedGanre($e);		
+		radioControl.setChannel(ganre);
+		handySoft.setChannel(ganre + 1);
+end
+
+/*
 rule "Radio Setup for Human (young, man) #1"
 	when
 		$e: HumanInfo(gender == 1, ((age_low+age_high)/2) < 30)
@@ -94,3 +106,4 @@ rule "Radio Setup for Human (old, woman) #6"
 		radioControl.setChannel(5);
 		handySoft.setChannel(6);
 end
+*/

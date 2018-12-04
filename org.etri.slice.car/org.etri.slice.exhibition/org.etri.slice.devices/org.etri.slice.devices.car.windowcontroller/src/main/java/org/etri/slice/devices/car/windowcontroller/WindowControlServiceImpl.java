@@ -17,7 +17,7 @@ import com.hileco.drpc.mqtt.MqttDrpcClientBuilder;
 
 @Component(publicFactory=false, immediate=true)
 @Provides
-@Instantiate	
+//@Instantiate	
 public class WindowControlServiceImpl implements WindowControl {
 	
 	private static Logger s_logger = LoggerFactory.getLogger(WindowControlServiceImpl.class);	

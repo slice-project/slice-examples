@@ -7,7 +7,9 @@ import org.apache.felix.ipojo.annotations.Property;
 import org.apache.felix.ipojo.annotations.Provides;
 import org.apache.felix.ipojo.annotations.Validate;
 import org.etri.slice.commons.SliceException;
+import org.etri.slice.commons.car.context.HumanInfo;
 import org.etri.slice.commons.car.service.RadioControl;
+import org.etri.slice.integration.service.MusicGanreRecommender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,7 +28,8 @@ public class RadioControlService implements RadioControl {
 	private String m_broker;
 	@Property(name="identifier", value="innosim")
 	private String m_identifier;			
-	private RadioControl m_service;	
+	private RadioControl m_service;
+	private MusicGanreRecommender m_recommender;
 	
 	@Validate
 	public void init() throws SliceException {
@@ -35,6 +38,9 @@ public class RadioControlService implements RadioControl {
 	        mqttDrpcClient.connect();
 	        ServiceConnector<RadioControl> connector = mqttDrpcClient.connector(RadioControl.class);
 	        m_service = connector.connect(m_identifier);
+	        
+	        ServiceConnector<MusicGanreRecommender> connector2 = mqttDrpcClient.connector(MusicGanreRecommender.class);
+	        m_recommender = connector2.connect("proxy");	        
 		}
 		catch ( Throwable e ) {
 			throw new SliceException(e);
@@ -76,6 +82,14 @@ public class RadioControlService implements RadioControl {
 	@Override
 	public void setChannel(int channel) {
 		m_service.setChannel(channel);
+	}
+
+	@Override
+	public int getRecommendedGanre(HumanInfo info) {
+System.out.println("BEFORE call recommender ....");		
+		String ganre = m_recommender.getRecommendedGanre(info.getGender(), info.getAge_low(), info.getAge_high(), info.getHappiness());
+System.out.println("AFTER call recommender ...");		
+		return Integer.parseInt(ganre);
 	}
 	
 }

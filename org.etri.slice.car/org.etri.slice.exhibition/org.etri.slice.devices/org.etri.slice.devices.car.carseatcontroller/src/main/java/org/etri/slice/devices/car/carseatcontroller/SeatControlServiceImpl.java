@@ -18,7 +18,7 @@ import com.hileco.drpc.mqtt.MqttDrpcClientBuilder;
 
 @Component(publicFactory=false, immediate=true)
 @Provides
-@Instantiate	
+//@Instantiate	
 public class SeatControlServiceImpl implements SeatControl {
 	
 	private static Logger s_logger = LoggerFactory.getLogger(SeatControlServiceImpl.class);	

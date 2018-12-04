@@ -2,6 +2,8 @@ package org.etri.slice.commons.car.service;
 
 import javax.management.MXBean;
 
+import org.etri.slice.commons.car.context.HumanInfo;
+
 @MXBean
 public interface RadioControl {
 	
@@ -21,5 +23,7 @@ public interface RadioControl {
 	int getChannel();
 				        
 	void setChannel(int channel);
+	
+	int getRecommendedGanre(HumanInfo info);
 	
 }

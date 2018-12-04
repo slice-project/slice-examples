@@ -17,7 +17,7 @@ import com.hileco.drpc.mqtt.MqttDrpcClientBuilder;
 
 @Component(publicFactory=false, immediate=true)
 @Provides
-@Instantiate	
+//@Instantiate	
 public class WiperControlServiceImpl implements WiperControl {
 	
 	private static Logger s_logger = LoggerFactory.getLogger(WiperControlServiceImpl.class);	

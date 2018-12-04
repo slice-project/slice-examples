@@ -30,8 +30,8 @@ import org.etri.slice.api.learning.Action;
 import org.etri.slice.api.learning.Action.ActionBuilder;
 import org.etri.slice.api.learning.ActionLogger;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;		
-
+import org.slf4j.LoggerFactory;
+import org.etri.slice.commons.car.context.HumanInfo;
 import org.etri.slice.commons.car.context.NoiseLevel;
 import org.etri.slice.commons.car.service.RadioControl;
 
@@ -96,5 +96,10 @@ public class RadioControlCommander implements RadioControl {
 		catch ( Exception e ) {
 			s_logger.error("ERR : " + e.getMessage());
 		}			
+	}
+
+	@Override
+	public int getRecommendedGanre(HumanInfo info) {
+		return m_proxy.getRecommendedGanre(info);
 	}			
 }
