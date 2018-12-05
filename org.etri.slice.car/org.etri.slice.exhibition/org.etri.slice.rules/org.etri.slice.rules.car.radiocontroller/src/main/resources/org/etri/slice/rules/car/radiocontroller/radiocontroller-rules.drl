@@ -42,8 +42,8 @@ rule "Radio Setup for Human"
 		radioControl.setPower(true);
 		radioControl.setVolume(30);
 		int ganre = radioControl.getRecommendedGanre($e);		
-		radioControl.setChannel(ganre);
-		handySoft.setChannel(ganre + 1);
+		radioControl.setChannel(ganre - 1);
+		handySoft.setChannel(ganre);
 end
 
 /*
