@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.etri.slice</groupId>
 		<artifactId>org.etri.slice</artifactId>
-		<version>0.9.1</version>
+		<version>1.1.0</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
@@ -79,53 +79,54 @@
 		<dependency>
 			<groupId>org.etri.slice</groupId>
 			<artifactId>org.etri.slice.api</artifactId>
-			<version>0.9.1</version>
+			<version>1.1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.etri.slice</groupId>
 			<artifactId>org.etri.slice.core</artifactId>
-			<version>0.9.1</version>
+			<version>1.1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.etri.slice</groupId>
 			<artifactId>org.etri.slice.commons</artifactId>
-			<version>0.9.1</version>
+			<version>1.1.0</version>
 		</dependency>										
 		<dependency>
 			<groupId>org.etri.slice.commons</groupId>
 			<artifactId>org.etri.slice.commons.room</artifactId>
-			<version>0.9.1</version>
+			<version>1.1.0</version>
 		</dependency>
-		<dependency>
-			<groupId>org.etri.slice</groupId>
-			<artifactId>org.etri.slice.agents.room.temperaturedetector</artifactId>
-			<version>0.9.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.etri.slice.devices</groupId>
-			<artifactId>org.etri.slice.devices.room.temperaturedetector</artifactId>
-			<version>0.9.1</version>
-		</dependency>		
-<!--	
-		<dependency>
-			<groupId>org.etri.slice</groupId>
-			<artifactId>org.etri.slice.agents.room.temperaturedetector</artifactId>
-			<version>0.9.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.etri.slice.devices</groupId>
-			<artifactId>org.etri.slice.devices.room.temperaturedetector</artifactId>
-			<version>0.9.1</version>
-		</dependency>										
+		
 		<dependency>
 			<groupId>org.etri.slice</groupId>
 			<artifactId>org.etri.slice.agents.room.fancontroller</artifactId>
-			<version>0.9.1</version>
+			<version>1.1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.etri.slice.devices</groupId>
 			<artifactId>org.etri.slice.devices.room.fancontroller</artifactId>
-			<version>0.9.1</version>
+			<version>1.1.0</version>
+		</dependency>
+<!--	
+		<dependency>
+			<groupId>org.etri.slice</groupId>
+			<artifactId>org.etri.slice.agents.room.temperaturedetector</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.etri.slice.devices</groupId>
+			<artifactId>org.etri.slice.devices.room.temperaturedetector</artifactId>
+			<version>1.1.0</version>
+		</dependency>										
+		<dependency>
+			<groupId>org.etri.slice</groupId>
+			<artifactId>org.etri.slice.agents.room.fancontroller</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.etri.slice.devices</groupId>
+			<artifactId>org.etri.slice.devices.room.fancontroller</artifactId>
+			<version>1.1.0</version>
 		</dependency>										
 -->
 	</dependencies>
@@ -202,6 +203,24 @@
 							</resources>
 						</configuration>
 					</execution>
+					<execution>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<phase>compile</phase>
+						<id>copy-configuration</id>
+						<configuration>
+							<outputDirectory>${project.build.directory}/conf</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${project.basedir}</directory>
+									<includes>
+										<include>slice.properties</include>
+									</includes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>							
 				</executions>
 			</plugin>
 		</plugins>

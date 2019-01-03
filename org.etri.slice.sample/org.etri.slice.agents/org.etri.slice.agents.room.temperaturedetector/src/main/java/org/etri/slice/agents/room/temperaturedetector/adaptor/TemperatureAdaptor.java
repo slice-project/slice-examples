@@ -38,7 +38,7 @@ import org.etri.slice.commons.room.context.Temperature;
 @Instantiate
 public class TemperatureAdaptor extends EventSubscriber<Temperature> {
 	
-	private static final long serialVersionUID = 5789869172208124056L;
+	private static final long serialVersionUID = -4760173707838535101L;
 
 	@Property(name="topic", value=Temperature.topic)
 	private String m_topic;

@@ -55,6 +55,16 @@ public class ElectronicFanCommander implements ElectronicFan {
 	}
 	
 	@Override
+	public boolean getPower() {
+		return m_proxy.getPower();
+	}
+	
+	@Override		        
+	public void setPower(boolean power) {
+		m_proxy.setPower(power);
+		
+	}
+	@Override
 	public int getLevel() {
 		return m_proxy.getLevel();
 	}

@@ -24,7 +24,7 @@ import org.etri.slice.commons.room.context.Temperature;
 public class TemperatureChanged extends SliceEvent {
 
 	public static final String TOPIC = "temperate_changed";
-	private static final long serialVersionUID = 919379969629768571L;
+	private static final long serialVersionUID = 5407086173831184937L;
 	
 	private Temperature temp;
 }

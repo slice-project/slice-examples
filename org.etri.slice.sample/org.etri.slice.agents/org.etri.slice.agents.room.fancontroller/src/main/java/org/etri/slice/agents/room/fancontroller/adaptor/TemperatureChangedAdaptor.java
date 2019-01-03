@@ -33,17 +33,18 @@ import org.etri.slice.core.perception.MqttEventSubscriber;
 import org.etri.slice.agents.room.fancontroller.stream.TemperatureChangedStream;
 import org.etri.slice.commons.room.event.TemperatureChanged;
 
-@Component
+@Component(managedservice="org.etri.slice.agent")
 @Instantiate
 public class TemperatureChangedAdaptor extends MqttEventSubscriber<TemperatureChanged> {
 	
-	private static final long serialVersionUID = 8361545033641707133L;
+	private static final long serialVersionUID = -2641774684696263459L;
 
 	@Property(name="topic", value=TemperatureChanged.TOPIC)
 	private String m_topic;
 	
-	@Property(name="url", value="tcp://192.168.0.37:1883")
+	@Property(name="agent.agency.url", value="tcp://129.254.87.240:1883")
 	private String m_url;
+	private String m_prevUrl;
 	
 	@Requires
 	private WorkingMemory m_wm;
@@ -58,7 +59,7 @@ public class TemperatureChangedAdaptor extends MqttEventSubscriber<TemperatureCh
 		return m_topic;
 	}
 	
-	protected String getMqttURL() {
+	protected synchronized String getMqttURL() {
 		return m_url;
 	}
 	
@@ -87,5 +88,15 @@ public class TemperatureChangedAdaptor extends MqttEventSubscriber<TemperatureCh
 	public void stop() {
 		super.stop();
 	}
+	
+    @Property(name="agent.agency.url")
+    public synchronized void setAgencyUrl(String url) {
+    	if ( url.trim().equals(m_prevUrl) ) {
+    		return;
+    	}
+    	
+        m_prevUrl = url;   
+        super.restart();
+    }
 }
 

@@ -6,7 +6,12 @@ import javax.management.MXBean;
 public interface ElectronicFan {
 	
 	static final String id = "electronicFan";
+	static final String setPower = "electronicFan.setPower";
 	static final String setLevel = "electronicFan.setLevel";
+	
+	boolean getPower();
+				        
+	void setPower(boolean power);
 	
 	int getLevel();
 				        

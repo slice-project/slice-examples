@@ -1,0 +1,6 @@
+org/etri/slice/commons/room/context/Temperature$TemperatureBuilder.class
+org/etri/slice/commons/room/event/TemperatureChanged.class
+org/etri/slice/commons/room/context/Temperature$Field.class
+org/etri/slice/commons/room/service/ElectronicFan.class
+org/etri/slice/commons/room/event/TemperatureChanged$TemperatureChangedBuilder.class
+org/etri/slice/commons/room/context/Temperature.class

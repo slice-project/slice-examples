@@ -5,11 +5,10 @@
 	<parent>
 		<groupId>org.etri.slice</groupId>
 		<artifactId>org.etri.slice.rules</artifactId>
-		<version>0.9.1</version>
+		<version>1.1.0</version>
 	</parent>
 
 	<artifactId>org.etri.slice.rules.room.fancontroller</artifactId>
-	<version>0.9.1</version>
 	<name>... rules for a room.fancontroller agent </name>
 
 </project>
